@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send Data to Java Server</title>
+</head>
+<body>
+    <button onclick="sendData('kill ')">inaefilnäk</button>
+    
+    <div id="response"></div>
+
+    <script>
+        function sendData(datatext) {
+            fetch('http://localhost:4567/sendData', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: datatext,
+            })
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('response').innerText = data;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</body>
+</html>
